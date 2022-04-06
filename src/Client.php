@@ -480,6 +480,22 @@ class Client
     {
         return $this->sendRequest('/picklists/' . $idpicklist . '/unassign', null, self::METHOD_POST);
     }
+    
+    public function pickingContainers()
+    {
+        return $this->sendRequest('/picking-containers/', [], self::METHOD_GET);
+    }
+
+    public function pickingContainer($idpickingContainer, $snooze_until = null)
+    {
+        return $this->sendRequest('/picking-containers/' . $idpickingContainer, [], self::METHOD_GET);
+    }
+
+    public function linkPicklistToContainer($idpicklist, $idpickingContainer = null)
+    {
+        $params = array('idpicklist' => $idpicklist);
+        return $this->sendRequest('/picking-containers/' . $idpickingContainer, $params, self::METHOD_POST);
+    }
 
     public function snoozePicklist($idpicklist, $snooze_until = null)
     {
